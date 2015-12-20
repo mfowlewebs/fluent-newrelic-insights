@@ -1,0 +1,12 @@
+[
+  {
+    "eventType": "TestPurchase",
+    "totalAmount": 1000,
+    "userId": 1
+  },
+  {
+    "eventType": "TestPurchase",
+    "totalAmount": 10000,
+    "userId": 1
+  },
+]

@@ -1,0 +1,4 @@
+source 'https://rubygems.org'
+
+gem 'fluentd'
+gem 'fluent-newrelic-insights', path: 'vendor/fluent-newrelic-insights'
