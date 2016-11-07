@@ -44,7 +44,7 @@ module Fluent
     def build_event(tag, time, record)
       type = record[@event_type_key]
       return nil unless type
-      data = @event_data_key == '.' ? record : reocrd[@event_data_key]
+      data = @event_data_key == '.' ? record : record[@event_data_key]
       data ||= {}
       return nil unless data.is_a?(Hash)
       data = flatten_hash(data)
