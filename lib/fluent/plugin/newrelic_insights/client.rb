@@ -13,22 +13,20 @@ module Fluent::NewrelicInsights
       puts "payload: " + events.to_json
       puts "apikey: " + @insert_key
       puts "url: " + @url
-      begin
-        response = RestClient::Request.execute(
-          method: :post,
-          url: @url,
-          payload: events.to_json,
-          headers: {
-            "Content-Type" => "application/json",
-            "X-Insert-Key" => @insert_key
-          }
-        )
-        textResponse = response.to_s
-        puts "response: " + textResponse
-        JSON.load(textResponse)
-      rescue => e
-        puts "error: " + e.response
-      end
+      response = RestClient::Request.execute(
+        method: :post,
+        url: @url,
+        payload: events.to_json,
+        headers: {
+          "Content-Type" => "application/json",
+          "X-Insert-Key" => @insert_key
+        }
+      )
+      textResponse = response.to_s
+      puts "response: " + textResponse
+      JSON.load(textResponse)
+    rescue => e
+      puts "error (" + e.response.code + ")" + e.response
     end
   end
 end
