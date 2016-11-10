@@ -10,6 +10,7 @@ module Fluent::NewrelicInsights
     end
 
     def insert_events(events)
+      puts "payload: " + events.to_json
       response = RestClient::Request.execute(
         method: :post,
         url: @url,
@@ -19,7 +20,6 @@ module Fluent::NewrelicInsights
           "X-Insert-Key" => @insert_key
         }
       )
-      puts "payload: " + events.to_json
       textResponse = response.to_s
       puts "response: " + textResponse
       JSON.load(textResponse)
