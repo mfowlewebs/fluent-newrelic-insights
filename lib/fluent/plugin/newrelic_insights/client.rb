@@ -11,8 +11,8 @@ module Fluent::NewrelicInsights
 
     def insert_events(events)
       puts "payload: " + events.to_json
-      puts "apikey" + @insert_key
-      puts "url" + @url
+      puts "apikey: " + @insert_key
+      puts "url: " + @url
       begin
         response = RestClient::Request.execute(
           method: :post,
