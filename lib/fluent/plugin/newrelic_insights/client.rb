@@ -11,18 +11,24 @@ module Fluent::NewrelicInsights
 
     def insert_events(events)
       puts "payload: " + events.to_json
-      response = RestClient::Request.execute(
-        method: :post,
-        url: @url,
-        payload: events.to_json,
-        headers: {
-          "Content-Type" => "application/json",
-          "X-Insert-Key" => @insert_key
-        }
-      )
-      textResponse = response.to_s
-      puts "response: " + textResponse
-      JSON.load(textResponse)
+      puts "apikey" + @insert_key
+      puts "url" + @url
+      begin
+        response = RestClient::Request.execute(
+          method: :post,
+          url: @url,
+          payload: events.to_json,
+          headers: {
+            "Content-Type" => "application/json",
+            "X-Insert-Key" => @insert_key
+          }
+        )
+        textResponse = response.to_s
+        puts "response: " + textResponse
+        JSON.load(textResponse)
+      rescue => e
+        puts "error: " + e.response
+      end
     end
   end
 end
