@@ -19,7 +19,10 @@ module Fluent::NewrelicInsights
           "X-Insert-Key" => @insert_key
         }
       )
-      JSON.load(response.to_s)
+      puts "payload: " + events.to_json
+      textResponse = response.to_s
+      puts "response: " + textResponse
+      JSON.load(textResponse)
     end
   end
 end
